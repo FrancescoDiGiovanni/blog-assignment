@@ -31,6 +31,10 @@ public class Post {
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "author_id", referencedColumnName = "id")
+    private Author author;
+
     @OneToMany(mappedBy = "post")
     private List<Tag> tags;
 
