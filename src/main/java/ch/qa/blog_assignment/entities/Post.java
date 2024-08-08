@@ -19,7 +19,11 @@ public class Post {
 
     @Id
     @Column(name="id", nullable = false)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
+
+    @Column(name = "title")
+    private String title;
 
     @Column(name = "content")
     private String content;
@@ -27,15 +31,15 @@ public class Post {
     @Column(name = "image")
     private String image;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "author_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "author_id")
     private Author author;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable (
             name = "posts_tags",
             joinColumns = @JoinColumn(name = "post_id"),
