@@ -6,12 +6,10 @@ import ch.qa.blog_assignment.repositories.PostRepository;
 import ch.qa.blog_assignment.services.PostService;
 import ch.qa.blog_assignment.services.specifications.PostSpecification;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Type;
 import java.util.Arrays;
 import java.util.List;
 
