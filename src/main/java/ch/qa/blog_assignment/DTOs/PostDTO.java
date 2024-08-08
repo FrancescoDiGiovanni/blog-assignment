@@ -12,9 +12,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PostDTO {
-    private int id;
     private String title;
     private String content;
+    private String image;
     private AuthorDTO author;
     private List<TagDTO> tags;
     private CategoryDTO category;
