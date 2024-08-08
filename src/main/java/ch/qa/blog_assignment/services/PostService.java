@@ -6,5 +6,8 @@ import ch.qa.blog_assignment.entities.Post;
 import java.util.List;
 
 public interface PostService {
+
     List<PostDTO> getAllPosts(String title, String category, String tags);
+
+    PostDTO createNewPost(Post post);
 }

@@ -1,10 +1,12 @@
 package ch.qa.blog_assignment.controllers;
 
 import ch.qa.blog_assignment.DTOs.PostDTO;
+import ch.qa.blog_assignment.entities.Post;
 import ch.qa.blog_assignment.exceptions.BlogException;
 import ch.qa.blog_assignment.services.PostService;
 import ch.qa.blog_assignment.utilities.Response;
 import ch.qa.blog_assignment.utilities.ResponseUtility;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +31,16 @@ public class PostController {
 
         String okMessage = "Posts list retrieved successfully.";
         return ResponseUtility.buildSuccessResponseEntity(okMessage, posts, log);
+    }
+
+    @PostMapping(value = "/", produces = "application/json")
+    public ResponseEntity<Response<PostDTO>> createPost(
+            @Valid @RequestBody Post post
+    ) throws BlogException {
+        PostDTO postDTO = postService.createNewPost(post);
+
+        String okMessage = "Posts created successfully.";
+        return ResponseUtility.buildSuccessResponseEntity(okMessage, postDTO, log);
     }
 
 }
