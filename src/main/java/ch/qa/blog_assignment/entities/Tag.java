@@ -19,7 +19,7 @@ public class Tag {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "name")
+    @Column(name = "name", unique = true)
     private String name;
 
     @ManyToOne
