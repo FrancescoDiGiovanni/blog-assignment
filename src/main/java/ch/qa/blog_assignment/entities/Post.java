@@ -41,7 +41,7 @@ public class Post {
     @JoinColumn(name = "author_id", referencedColumnName = "id")
     private Author author;
 
-    @OneToMany(mappedBy = "post")
+    @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
     private List<Tag> tags;
 
 }
