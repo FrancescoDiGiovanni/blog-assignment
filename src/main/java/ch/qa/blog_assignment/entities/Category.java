@@ -16,13 +16,13 @@ import lombok.Setter;
 public class Category {
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "name", unique = true)
     private String name;
 
-    @OneToOne(mappedBy = "category", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "category")
     private Post post;
 }

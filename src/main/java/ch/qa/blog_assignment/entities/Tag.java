@@ -15,14 +15,14 @@ import lombok.Setter;
 @Entity(name = "Tag")
 public class Tag {
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "name")
     private String name;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "post_id", referencedColumnName = "id")
     private Post post;
 }
