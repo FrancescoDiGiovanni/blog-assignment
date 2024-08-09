@@ -81,7 +81,6 @@ CREATE TABLE `tags` (
   `name` varchar(100) DEFAULT NULL,
   `post_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `tags_unique` (`name`),
   KEY `tags_posts_FK` (`post_id`),
   CONSTRAINT `tags_posts_FK` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -96,4 +95,4 @@ CREATE TABLE `tags` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-08-09  9:45:21
+-- Dump completed on 2024-08-09  9:53:00
