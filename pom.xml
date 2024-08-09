@@ -11,7 +11,7 @@
 	<groupId>ch.qa</groupId>
 	<artifactId>blog-assignment</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>blog-assignment</name>
 	<description>Blog Assignment</description>
 	<url/>
