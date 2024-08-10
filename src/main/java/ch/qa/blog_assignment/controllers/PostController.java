@@ -68,7 +68,7 @@ public class PostController {
         return ResponseUtility.buildSuccessResponseEntity(okMessage, postDTO, log);
     }
 
-    @DeleteMapping(value="/{id}/removeTags", produces = "application/json")
+    @PostMapping(value="/{id}/removeTags", produces = "application/json")
     public ResponseEntity<Response<PostDTO>> removeTags(
             @PathVariable("id") int id,
             @RequestBody List<String> nameList

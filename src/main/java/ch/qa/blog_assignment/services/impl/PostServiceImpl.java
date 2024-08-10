@@ -118,7 +118,7 @@ public class PostServiceImpl implements PostService {
     public PostDTO removeTags(int id, List<String> nameList) {
         Post post = getPostById(id);
 
-        post.setTags(post.getTags().stream().filter(tag -> nameList.contains(tag.getName())).collect(Collectors.toList()));
+        post.setTags(post.getTags().stream().filter(tag -> !nameList.contains(tag.getName())).collect(Collectors.toList()));
 
         return modelMapper.map(postRepository.save(post), PostDTO.class);
     }
