@@ -64,7 +64,7 @@ class BlogAssignmentApplicationTests {
 
 		String title = "New test";
 		String category = "CATEGORY";
-		String tags = "SPORT";
+		String tags = "SPORT,CULTURE";
 		ResultActions resultActions =
 				mockMvc.perform(get("/post/?title="+title+"&category="+category+"&tags="+tags)
 						.contentType(MediaType.APPLICATION_JSON)
