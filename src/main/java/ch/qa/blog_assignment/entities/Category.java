@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -23,6 +25,6 @@ public class Category {
     @Column(name = "name", unique = true)
     private String name;
 
-    @OneToOne(mappedBy = "category")
-    private Post post;
+    @OneToMany(mappedBy = "category")
+    private List<Post> post;
 }

@@ -33,7 +33,7 @@ public class Post {
     @Column(name = "image")
     private String image;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
 
