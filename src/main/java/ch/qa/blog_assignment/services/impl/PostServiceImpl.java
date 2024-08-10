@@ -69,19 +69,21 @@ public class PostServiceImpl implements PostService {
         newPost.setContent(post.getContent());
         newPost.setImage(post.getImage());
 
-        Optional<Author> author = authorRepository.findByEmail(post.getAuthor().getEmail());
-        if ( author.isPresent() )
-            newPost.setAuthor(author.get());
-        else
-            newPost.setAuthor(modelMapper.map(post.getAuthor(), Author.class));
+        if ( post.getAuthor() != null ) {
+            Optional<Author> author = authorRepository.findByEmail(post.getAuthor().getEmail());
+            if (author.isPresent())
+                newPost.setAuthor(author.get());
+            else
+                newPost.setAuthor(modelMapper.map(post.getAuthor(), Author.class));
+        }
 
-        postRepository.save(newPost);
-
-        return modelMapper.map(post, BasicPostDTO.class);
+        return modelMapper.map(postRepository.save(newPost), BasicPostDTO.class);
     }
 
     @Override
     public PostDTO assignCategory(int id, CategoryDTO category) {
+        if ( category.getName() == null )
+            throw new BlogException(BlogErrorsEnum.EMPTY_CATEGORY.getCode(), BlogErrorsEnum.EMPTY_CATEGORY.getDescription(), BlogErrorsEnum.EMPTY_CATEGORY.getStatus());
         Post postToUpdate = getPostById(id);
 
         Optional<Category> categoryFromDb = categoryRepository.findByName(category.getName());
@@ -93,9 +95,8 @@ public class PostServiceImpl implements PostService {
             categoryToHandle = categoryFromDb.get();
 
         postToUpdate.setCategory(categoryToHandle);
-        postRepository.save(postToUpdate);
 
-        return modelMapper.map(postToUpdate, PostDTO.class);
+        return modelMapper.map(postRepository.save(postToUpdate), PostDTO.class);
     }
 
     @Override
@@ -109,9 +110,8 @@ public class PostServiceImpl implements PostService {
             tagRepository.save(tagToHandle);
             postToUpdate.getTags().add(tagToHandle);
         });
-        postRepository.save(postToUpdate);
 
-        return modelMapper.map(postToUpdate, PostDTO.class);
+        return modelMapper.map(postRepository.save(postToUpdate), PostDTO.class);
     }
 
     @Override
@@ -119,9 +119,8 @@ public class PostServiceImpl implements PostService {
         Post post = getPostById(id);
 
         post.setTags(post.getTags().stream().filter(tag -> nameList.contains(tag.getName())).collect(Collectors.toList()));
-        postRepository.save(post);
 
-        return modelMapper.map(post, PostDTO.class);
+        return modelMapper.map(postRepository.save(post), PostDTO.class);
     }
 
     @Override
@@ -147,8 +146,7 @@ public class PostServiceImpl implements PostService {
                 post.setAuthor(author.get());
         }
 
-        postRepository.save(post);
-        return modelMapper.map(post, PostDTO.class);
+        return modelMapper.map(postRepository.save(post), PostDTO.class);
     }
 
     @Override

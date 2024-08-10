@@ -46,7 +46,7 @@ public class PostController {
         return ResponseUtility.buildSuccessResponseEntity(okMessage, postDTO, log);
     }
 
-    @PostMapping(value = "/assignCategory/{id}", produces = "application/json")
+    @PostMapping(value = "/{id}/assignCategory", produces = "application/json")
     public ResponseEntity<Response<PostDTO>> assignCategory(
             @PathVariable("id") int id,
             @RequestBody CategoryDTO category
@@ -57,7 +57,7 @@ public class PostController {
         return ResponseUtility.buildSuccessResponseEntity(okMessage, postDTO, log);
     }
 
-    @PostMapping(value="/assignTags/{id}", produces = "application/json")
+    @PostMapping(value="/{id}/assignTags", produces = "application/json")
     public ResponseEntity<Response<PostDTO>> assignTags(
             @PathVariable("id") int id,
             @RequestBody List<TagDTO> tags
@@ -68,7 +68,7 @@ public class PostController {
         return ResponseUtility.buildSuccessResponseEntity(okMessage, postDTO, log);
     }
 
-    @DeleteMapping(value="/removeTags/{id}", produces = "application/json")
+    @DeleteMapping(value="/{id}/removeTags", produces = "application/json")
     public ResponseEntity<Response<PostDTO>> removeTags(
             @PathVariable("id") int id,
             @RequestBody List<String> nameList

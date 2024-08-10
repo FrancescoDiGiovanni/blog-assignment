@@ -10,6 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BasicPostDTO {
+    private int id;
     private String title;
     private String content;
     private String image;

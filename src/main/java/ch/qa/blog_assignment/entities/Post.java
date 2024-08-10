@@ -37,7 +37,7 @@ public class Post {
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "author_id", referencedColumnName = "id")
     private Author author;
 
