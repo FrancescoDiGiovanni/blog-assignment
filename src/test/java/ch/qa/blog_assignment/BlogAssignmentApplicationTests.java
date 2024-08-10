@@ -4,7 +4,6 @@ import ch.qa.blog_assignment.DTOs.AuthorDTO;
 import ch.qa.blog_assignment.DTOs.CategoryDTO;
 import ch.qa.blog_assignment.DTOs.PostDTO;
 import ch.qa.blog_assignment.utilities.Response;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +36,7 @@ class BlogAssignmentApplicationTests {
 
 	// POST CREATION TESTS
 	@Test
-	void givenNewPost_testPostCreation() throws Exception{
+	void givenNewPost_testPostCreation_expect200() throws Exception{
 		PostDTO postDTO = new PostDTO();
 		postDTO.setTitle("New Title");
 		postDTO.setContent("New Content");
@@ -60,7 +59,7 @@ class BlogAssignmentApplicationTests {
 
 	// POST READ TESTS
 	@Test
-	void givenAllParameters_createNewPostAndlistAllPosts() throws Exception{
+	void givenAllParameters_createNewPostAndlistAllPosts_expect200() throws Exception{
 		createNewPost();
 
 		String title = "New test";
@@ -78,7 +77,7 @@ class BlogAssignmentApplicationTests {
 	}
 
 	@Test
-	void noParameters_createNewPostAndListAllPosts() throws Exception{
+	void noParameters_createNewPostAndListAllPosts_expect200() throws Exception{
 		createNewPost();
 
 		ResultActions resultActions =
@@ -93,7 +92,7 @@ class BlogAssignmentApplicationTests {
 	}
 
 	@Test
-	void given1Parameter_createNewPostAndListAllPosts() throws Exception{
+	void given1Parameter_createNewPostAndListAllPosts_expect200() throws Exception{
 		createNewPost();
 
 		String title = "New test";
@@ -109,7 +108,7 @@ class BlogAssignmentApplicationTests {
 
 	// POST DELETE TESTS
 	@Test
-	void createNewPost_deletePost() throws Exception {
+	void createNewPost_deletePost_expect200() throws Exception {
 		int id = createNewPost().getId();
 
 		ResultActions resultActions =
@@ -123,7 +122,7 @@ class BlogAssignmentApplicationTests {
 	}
 
 	@Test
-	void deleteNotExistingPost() throws Exception {
+	void deleteNotExistingPost_expect404() throws Exception {
 		ResultActions resultActions =
 				mockMvc.perform(delete("/post/0")
 						.header("X-User", "admin"));
@@ -136,7 +135,7 @@ class BlogAssignmentApplicationTests {
 
 	//POST UPDATE TESTS
 	@Test
-	void createNewPost_fullyUpdate() throws Exception {
+	void createNewPost_fullyUpdate_expect200() throws Exception {
 		int id = createNewPost().getId();
 
 		PostDTO updatedPost = new PostDTO();
@@ -157,7 +156,7 @@ class BlogAssignmentApplicationTests {
 	}
 
 	@Test
-	void createNewPost_partiallyUpdate() throws Exception {
+	void createNewPost_partiallyUpdate_expect200() throws Exception {
 		int id = createNewPost().getId();
 
 		PostDTO updatedPost = new PostDTO();
@@ -175,7 +174,7 @@ class BlogAssignmentApplicationTests {
 	}
 
 	@Test
-	void updateNotExistingPost() throws Exception {
+	void updateNotExistingPost_expect404() throws Exception {
 		PostDTO updatedPost = new PostDTO();
 		updatedPost.setTitle("new title updated");
 		updatedPost.setContent("new content updated");
@@ -195,7 +194,7 @@ class BlogAssignmentApplicationTests {
 
 	// ASSIGN CATEGORY TEST
 	@Test
-	void createNewPost_assignCategory() throws Exception {
+	void createNewPost_assignCategory_expect200() throws Exception {
 		int id = createNewPost().getId();
 		CategoryDTO categoryDTO = new CategoryDTO();
 		categoryDTO.setName("Sport");
@@ -213,7 +212,7 @@ class BlogAssignmentApplicationTests {
 
 	// ASSIGN TAGS TEST
 	@Test
-	void createNewPost_assignTags() throws Exception {
+	void createNewPost_assignTags_expect200() throws Exception {
 		int id = createNewPost().getId();
 		List<String> tags = Arrays.asList("SPORT","ART","CULTURE");
 
@@ -230,7 +229,7 @@ class BlogAssignmentApplicationTests {
 
 	//REMOVE TAGS TEST
 	@Test
-	void createNewPostAndAddTags_removeTags() throws Exception {
+	void createNewPostAndAddTags_removeTags_expect200() throws Exception {
 		int id = createNewPost().getId();
 		List<String> tags = Arrays.asList("SPORT","ART","CULTURE");
 
